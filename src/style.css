@@ -1,1 +1,282 @@
+/* =================================
+   COMMAND CORE - INDUSTRIAL DESIGN
+   ================================= */
 
+:root {
+    --bg: #070a0d;
+    --surface: #10171e;
+    --surface-2: #18232c;
+    --border: #34434e;
+    --text: #dce5e9;
+    --muted: #8496a2;
+    --green: #39d98a;
+    --amber: #e7ad43;
+    --red: #ed5555;
+    --radius: 3px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 3px;
+}
+
+/* MAIN HEADER */
+
+header {
+    min-height: 65px;
+    background: #0d1319;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 22px;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #d8e6dc;
+}
+
+.status {
+    color: var(--green);
+    font-size: 11px;
+    font-weight: bold;
+}
+
+/* APPLICATION LAYOUT */
+
+.container {
+    display: flex;
+    min-height: calc(100vh - 65px);
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 245px;
+    flex-shrink: 0;
+    background: #0d1319;
+    border-right: 1px solid var(--border);
+    padding: 15px 12px;
+}
+
+.sidebar button {
+    display: block;
+    width: 100%;
+    padding: 14px 12px;
+    margin-bottom: 7px;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid transparent;
+    text-align: left;
+    transition: .2s;
+}
+
+.sidebar button:hover,
+.sidebar button.active {
+    color: var(--green);
+    background: #17271f;
+    border-color: #315c42;
+}
+
+/* MAIN CONTENT */
+
+main {
+    flex: 1;
+    min-width: 0;
+    padding: 25px;
+}
+
+h1 {
+    font-size: clamp(21px, 4vw, 30px);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+h2 {
+    font-size: 17px;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+p {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+/* DASHBOARD GRID */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(150px, 1fr)
+    );
+    gap: 13px;
+    margin: 25px 0;
+}
+
+.card,
+.panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.card {
+    padding: 20px;
+    min-height: 115px;
+    border-top: 2px solid #455966;
+}
+
+.card h3 {
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.card strong {
+    color: var(--green);
+    font-size: 23px;
+}
+
+.panel {
+    padding: 21px;
+    margin-bottom: 20px;
+}
+
+/* BUTTON SYSTEM */
+
+.action {
+    padding: 12px 17px;
+    margin: 5px;
+    color: #c8f3d7;
+    background: #172b21;
+    border: 1px solid #39734f;
+    border-radius: 2px;
+    transition: .2s;
+}
+
+.action:hover {
+    background: #254c35;
+    border-color: var(--green);
+}
+
+/* INPUT SYSTEM */
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 13px;
+    margin: 8px 0;
+    color: var(--text);
+    background: #080d12;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #657782;
+}
+
+/* COMMAND OUTPUT */
+
+#output {
+    min-height: 65px;
+    padding: 16px;
+    color: var(--green);
+    background: #070c10;
+    border: 1px solid var(--border);
+    overflow-wrap: anywhere;
+    line-height: 1.7;
+}
+
+/* STATUS INDICATORS */
+
+.online {
+    color: var(--green);
+}
+
+.warning {
+    color: var(--amber);
+}
+
+.offline {
+    color: var(--red);
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media (max-width: 700px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar button {
+        margin: 0;
+        font-size: 11px;
+        padding: 12px 8px;
+    }
+
+    main {
+        padding: 15px;
+    }
+
+    header {
+        padding: 15px;
+    }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
+}
